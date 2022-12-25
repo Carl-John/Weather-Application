@@ -20,7 +20,31 @@ app.use(express.static(publicStaticDirPath));
 
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'Weather App'
+        title: 'Weather',
+        name: 'Carl John Cruz'
+    })
+})
+
+app.get('/about', (re, res) => {
+    res.render('about', {
+        title: 'About Me',
+        name: 'Carl John Cruz'
+    })
+})
+
+app.get('/help', (req, res) => {
+    res.render('help', {
+        helpText: 'This is some helpful text.',
+        title: 'Help',
+        name: 'Carl John Cruz'
+    })
+})
+
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Carl John Cruz',
+        errorMessage: 'Help article not found.'
     })
 })
 
@@ -29,7 +53,7 @@ app.get('/weather', (req, res) => {
     const address = req.query.address
     if(!address) {
         return res.send({
-            error: "You must enter address in search text box"
+            error: "You must provide an address."
         })
     }
 
